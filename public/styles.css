@@ -722,15 +722,13 @@ body {
   color: var(--black);
 }
 
+
 /* Language selector */
-#langSelector, #langSelectorCard, #langSelectorStaff {
-  position: fixed;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 50;
-  background: var(--black2);
-  padding: 6px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--black3);
+#langSelector,
+#langSelectorCard,
+#langSelectorStaff {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--black3);
 }

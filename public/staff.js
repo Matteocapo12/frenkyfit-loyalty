@@ -255,6 +255,6 @@ function showStaffError(msg) {
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('langSelectorStaff').appendChild(createLangSelector());
+  document.getElementById('startScanBtn').addEventListener('click', startScanner);
   updatePageText();
-  // Camera starts on tap via the button
 });

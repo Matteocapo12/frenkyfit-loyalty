@@ -1,4 +1,4 @@
-const CACHE = 'frenkyfit-v1';
+const CACHE = 'frenkyfit-v2';
 const urls = ['/', '/login', '/card', '/staff', '/styles.css', '/manifest.json'];
 
 self.addEventListener('install', (e) => {

@@ -723,9 +723,14 @@ body {
 }
 
 
-/* Language selector */
+/* Language selector - top of card */
 #langSelector,
-#langSelectorCard,
+#langSelectorCard {
+  text-align: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--black3);
+}
 #langSelectorStaff {
   text-align: center;
   margin-top: 20px;

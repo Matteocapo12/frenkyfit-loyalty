@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0d0d0d">
+  <title>FrenkyFit - Staff Scanner</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <script defer src="/translations.js"></script>
+  <script defer src="/staff.js"></script>
+</head>
+<body>
+  <div class="staff-layout">
+    <div class="staff-header">
+      <img src="/logo-frenkyfit.png?v=1" alt="FrenkyFit" class="staff-logo" />
+      <span class="staff-badge" id="staffBadge">Staff</span>
+    </div>
+
+    <div class="scanner-wrapper" id="scannerWrapper">
+      <div id="scannerContainer">
+        <div id="reader"></div>
+        <p class="scan-hint" id="scanHint">Inquadra il QR code sulla carta del socio</p>
+      </div>
+
+      <div class="scanner-result hidden" id="scanResult">
+        <div class="scanned-user">
+          <div class="avatar" id="scannedAvatar">F</div>
+          <div class="info">
+            <h3 id="scannedName">Nome</h3>
+            <p id="scannedEmail">email</p>
+            <p class="code" id="scannedCode">FRK-XXXX</p>
+          </div>
+        </div>
+
+        <div class="staff-stamps" id="staffStamps">
+          <div class="stamp-row" id="stampRow"></div>
+        </div>
+
+        <div class="free-banner hidden" id="scannedFreeBanner">
+          <h3 id="scannedFreeTitle">🎉 CARTA COMPLETA!</h3>
+          <p id="scannedFreeText">Il socio ha diritto a una consumazione gratis!</p>
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn" id="addStampBtn" onclick="addStamp()">
+            + Aggiungi Timbro
+          </button>
+          <button class="btn btn-outline" id="resetBtn" onclick="resetCard()" style="display:none;">
+            🆕 Nuova Carta (resetta)
+          </button>
+          <button class="btn btn-secondary" id="scanAnotherBtn" onclick="resetScanner()">
+            Scansiona un altro QR
+          </button>
+          <div class="success-msg" id="staffSuccess" style="display:none;"></div>
+          <div class="error-msg" id="staffError" style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="langSelectorStaff"></div>
+  </div>
+</body>
+</html>

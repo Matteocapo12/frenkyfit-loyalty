@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0d0d0d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>FrenkyFit - La Mia Carta</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/icon.svg">
+  <link rel="stylesheet" href="/styles.css">
+  <script defer src="/translations.js"></script>
+  <script defer src="/sw-register.js"></script>
+  <script defer src="/card.js"></script>
+</head>
+<body>
+  <div class="container" id="app">
+    <div class="loading" id="loadingState">
+      <div class="spinner"></div>
+      <p id="loadingCardText">Caricamento carta fedeltà...</p>
+    </div>
+
+    <div class="hidden" id="cardContent">
+      <div class="card">
+        <div class="card-header">
+          <img src="/logo-frenkyfit.png?v=1" alt="FrenkyFit" class="brand-logo" />
+        </div>
+
+        <div class="free-banner hidden" id="freeBanner">
+          <h3 id="freeTitle">🎉 CONSUMAZIONE GRATIS!</h3>
+          <p id="freeText">Hai completato la tua carta! Reclama il premio allo staff.</p>
+        </div>
+
+        <div class="stamp-section">
+          <h2 id="stampSectionTitle">Le Tue Consumazioni</h2>
+          <div class="stamp-grid" id="stampGrid">
+            <div class="stamp" data-index="0">01</div>
+            <div class="stamp" data-index="1">02</div>
+            <div class="stamp" data-index="2">03</div>
+            <div class="stamp" data-index="3">04</div>
+            <div class="stamp" data-index="4">05</div>
+            <div class="stamp" data-index="5">06</div>
+            <div class="stamp" data-index="6">07</div>
+            <div class="stamp" data-index="7">08</div>
+            <div class="stamp" data-index="8">09</div>
+            <div class="stamp" data-index="9">10</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width:0%"></div>
+          </div>
+          <div class="progress-text">
+            <span id="stampCount">0 / 10</span>
+            <span id="stampProgress">0%</span>
+          </div>
+        </div>
+
+        <div class="qr-section">
+          <h3 id="qrTitle">Mostra questo QR allo staff</h3>
+          <div class="qr-code" id="qrContainer">
+            <img id="qrImage" src="" alt="QR Code" />
+          </div>
+          <p class="qr-hint" id="qrHint">Fai scannerizzare il QR al tablet della palestra per accumulare timbri</p>
+        </div>
+
+        <div class="wallet-section">
+          <h3 id="walletTitle">Aggiungi al Wallet</h3>
+          <div class="wallet-buttons">
+            <button class="btn-wallet" id="installBtn" onclick="showInstallPrompt()" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              <span id="walletHomeText">Aggiungi alla Home</span>
+            </button>
+            <button class="btn-wallet" onclick="showWalletInstructions()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+              <span id="walletPhoneText">Salva sul telefono</span>
+            </button>
+          </div>
+        </div>
+
+        <button class="logout-btn" id="logoutBtn" onclick="handleLogout()">Esci</button>
+        <div id="langSelectorCard"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="install-banner" id="installBanner">
+    <p id="installBannerText">Aggiungi FrenkyFit alla schermata Home per usarlo come un'app</p>
+    <button class="btn-install" id="doInstall">Aggiungi</button>
+    <button class="btn-close" onclick="dismissInstallBanner()">&times;</button>
+  </div>
+
+  <script>
+    if (!localStorage.getItem('frenkyfit_token')) {
+      window.location.href = '/login';
+    }
+  </script>
+</body>
+</html>

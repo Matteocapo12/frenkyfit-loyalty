@@ -1,0 +1,14 @@
+{
+  "name": "FrenkyFit Carta Fedeltà",
+  "short_name": "FrenkyFit",
+  "description": "Carta fedeltà digitale FrenkyFit - Ogni 10 consumazioni, 1 gratis!",
+  "start_url": "/login",
+  "display": "standalone",
+  "background_color": "#0d0d0d",
+  "theme_color": "#e63946",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/icons/icon.svg", "type": "image/svg+xml", "sizes": "512x512", "purpose": "any maskable" },
+    { "src": "/icons/icon-192.svg", "type": "image/svg+xml", "sizes": "192x192", "purpose": "any maskable" }
+  ]
+}

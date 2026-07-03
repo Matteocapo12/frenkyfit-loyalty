@@ -14,29 +14,29 @@ function updatePageText() {
   if (el('scanAnotherBtn')) el('scanAnotherBtn').textContent = t('scanAnother');
   if (el('scannedFreeTitle')) el('scannedFreeTitle').textContent = '🎉 ' + t('cardCompleteStaff');
   if (el('scannedFreeText')) el('scannedFreeText').textContent = t('cardCompleteText');
+  const sb = document.getElementById('startScanBtn');
+  if (sb) sb.textContent = '📷 ' + t('startScan');
 }
 
 let updateDynamicText = updatePageText;
 
 function startScanner() {
+  const btn = document.getElementById('startScanBtn');
   const reader = document.getElementById('reader');
   reader.innerHTML = '';
+  btn.style.display = 'none';
 
   html5QrCode = new Html5Qrcode('reader');
 
   html5QrCode.start(
     { facingMode: 'environment' },
-    { fps: 10, qrbox: { width: 250, height: 250 } },
+    { fps: 10, qrbox: { width: 300, height: 300 } },
     onScanSuccess,
     onScanFailure
   ).catch(() => {
-    reader.innerHTML = `
-      <div style="text-align:center;padding:40px 20px;background:var(--black);border-radius:16px;">
-        <div style="font-size:40px;margin-bottom:12px;">📷</div>
-        <h3 style="margin-bottom:8px;font-size:16px;color:white;">Camera access required</h3>
-        <p style="color:#888;font-size:13px;">Allow camera access to scan QR codes.</p>
-      </div>
-    `;
+    btn.style.display = 'block';
+    btn.textContent = '📷 Tocca per avviare la fotocamera';
+    reader.innerHTML = '';
   });
 }
 
@@ -233,7 +233,10 @@ function resetScanner() {
   document.getElementById('staffSuccess').style.display = 'none';
   document.getElementById('staffError').style.display = 'none';
 
-  startScanner();
+  const btn = document.getElementById('startScanBtn');
+  btn.style.display = 'block';
+  btn.textContent = '📷 Avvia Scanner';
+  document.getElementById('reader').innerHTML = '';
 }
 
 function showStaffSuccess(msg) {
@@ -253,5 +256,5 @@ function showStaffError(msg) {
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('langSelectorStaff').appendChild(createLangSelector());
   updatePageText();
-  startScanner();
+  // Camera starts on tap via the button
 });
